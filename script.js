@@ -46,10 +46,11 @@ document.getElementById("form").addEventListener("submit", async function(e){
         formData.append("extraTreatment", JSON.stringify(extraTreatment));
     }
 
-    fetch("https://compleate-report-backend.onrender.com/api/login",{
-      method: "POST",
-      body: formData
+    const response = await fetch("https://compleate-report-backend.onrender.com/api/report/generate",{
+      method:"POST",
+      body:formData
     });
+
     const blob = await response.blob();
     const link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
